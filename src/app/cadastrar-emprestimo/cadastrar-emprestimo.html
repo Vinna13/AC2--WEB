@@ -1,0 +1,15 @@
+<form (ngSubmit)="cadastrar()" #f="ngForm">
+  <div>
+    <label>Nome da pessoa</label>
+    <input type="text" name="nomePessoa" [(ngModel)]="nomePessoa" required />
+  </div>
+  <div>
+    <label>Título do livro</label>
+    <input type="text" name="tituloLivro" [(ngModel)]="tituloLivro" required />
+  </div>
+  <div>
+    <label>Data prevista de devolução</label>
+    <input type="date" name="dataPrevistaDevolucao" [(ngModel)]="dataPrevistaDevolucao" required />
+  </div>
+  <button type="submit" [disabled]="f.invalid">Cadastrar</button>
+</form>

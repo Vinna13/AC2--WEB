@@ -1,0 +1,21 @@
+<div>
+  <p>Total de empréstimos: {{ total }}</p>
+  <p>Em aberto: {{ emAberto }}</p>
+  <p>Devolvidos: {{ devolvidos }}</p>
+</div>
+
+@if (emprestimos.length === 0) {
+  <p>Nenhum empréstimo cadastrado</p>
+} @else {
+  @for (e of emprestimos; track e.id) {
+    <div>
+      <p>{{ e.nomePessoa }} — {{ e.tituloLivro }}</p>
+      <p>Devolução prevista: {{ e.dataPrevistaDevolucao | date:'dd/MM/yyyy' }}</p>
+      <p [class.em-aberto]="!e.devolvido" [class.devolvido]="e.devolvido">
+        {{ e.devolvido ? 'Devolvido' : 'Em aberto' }}
+      </p>
+      <button (click)="registrarDevolucao(e.id)" [disabled]="e.devolvido">Registrar devolução</button>
+      <button (click)="remover(e.id)">Remover</button>
+    </div>
+  }
+}
